@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using API.Extensions;
 
 namespace API.Entities
 {
@@ -7,8 +7,8 @@ namespace API.Entities
         public int Id { get; set; }
         [MaxLength(100)]
         public required string UserName { get; set; }
+
         public required byte[] PasswordHash { get; set; }
 
-        public required byte[] PasswordSalt { get; set; }
     }
 }
