@@ -17,10 +17,10 @@ namespace API.Controllers
  //       public async Task<ActionResult<AppUser>> Register([FromBody] string username, string password) //default
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            if(await UserExits(registerDto.Username)) return BadRequest("User is taken");
+            if( await UserExits(registerDto.Username) ) return BadRequest("User is taken");
             using var hmac = new HMACSHA512();
             var user = new AppUser
-            {
+            {   
                 UserName = registerDto.Username.ToLower(),
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
                 PasswordSalt = hmac.Key
@@ -51,7 +51,7 @@ namespace API.Controllers
 
             for (int i = 0; i < computeHash.Length; i++)
             {
-                if (computeHash[i] != loginDto.Password[i])
+                if (computeHash[i] != user.PasswordHash[i])
                     return Unauthorized("Invalid password");
             }
 
@@ -70,7 +70,8 @@ namespace API.Controllers
             //    return false;
             //}
             //return true;
-            return await context.Users.AnyAsync(x => x.UserName.ToLower() == username.ToLower()); //Bob!=bob 
+        
+            return await context.Users.AnyAsync(x => x.UserName == username); //Bob!=bob 
         }
 
     }
