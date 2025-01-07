@@ -27,7 +27,7 @@ namespace API.Data
                 user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("Pa$$w0rd"));
                 user.PasswordSalt = hmac.Key;
 
-                context.Add(user);
+                context.Users.Add(user);
                 
             }
             await context.SaveChangesAsync();
