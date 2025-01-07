@@ -22,7 +22,6 @@ namespace API.Controllers
 
             if(thing == null) return NotFound();
 
-
             return thing;
         }
 
