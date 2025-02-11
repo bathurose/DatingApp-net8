@@ -25,8 +25,5 @@ namespace API.Entities
         //{
         //    return DateOfBirth.CalculateAge();
         //} 
-
-        public required byte[] PasswordHash { get; set; }
-        public required byte[] PasswordHash { get; set; }
     }
 }
