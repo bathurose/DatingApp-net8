@@ -17,7 +17,7 @@ namespace API.Middleware
             }
             catch (Exception ex) {
                 logger.LogError(ex, ex.Message); // print error to terminal
-                httpContext.Response.ContentType = "application/json";
+                
                 httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
                 var response = env.IsDevelopment() ? new ApiException(httpContext.Response.StatusCode, ex.Message, ex.StackTrace)
